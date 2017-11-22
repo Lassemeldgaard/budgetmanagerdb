@@ -42,7 +42,7 @@ namespace dbtrans
         {
             string debug = Encoding.UTF8.GetString(data);
             JObject json = JObject.Parse(debug);
-            SqlCommand command = new SqlCommand("DELETE FROM Transaction WHERE Id = @Id", connection);
+            SqlCommand command = new SqlCommand("DELETE FROM [Transaction] WHERE Id = @Id", connection);
             command.Parameters.Add(CreateParam("@Id", json["Id"], SqlDbType.Int));
             try
             {
@@ -70,9 +70,9 @@ namespace dbtrans
         {
             string debug = Encoding.UTF8.GetString(data);
             JObject json = JObject.Parse(debug);
-
-            SqlCommand command = new SqlCommand("INSERT INTO Transaction(Value, Text, Date, FK_Category) VALUES (@Value, @Text, @Date, @FK_Category)", connection);
-            command.Parameters.Add(CreateParam("@Value", json["Value"], SqlDbType.Float));
+            double temp = Convert.ToDouble(json["Value"].ToString());
+            SqlCommand command = new SqlCommand("INSERT INTO [Transaction](Value, Text, Date, FK_Category) VALUES (@Value, @Text, @Date, @FK_Category)", connection);
+            command.Parameters.Add(CreateParam("@Value", temp, SqlDbType.Float));
             command.Parameters.Add(CreateParam("@Text", json["Text"], SqlDbType.NVarChar));
             command.Parameters.Add(CreateParam("@Date", json["Date"], SqlDbType.Date));
             command.Parameters.Add(CreateParam("@FK_Category", json["FK_Category"], SqlDbType.Int));
@@ -104,7 +104,7 @@ namespace dbtrans
             string debug = Encoding.UTF8.GetString(data);
             JObject json = JObject.Parse(debug);
 
-            SqlCommand command = new SqlCommand("UPDATE Transaction SET Value = @Value, Text = @Text, Date = @Date, FK_Category = @FK_Category WHERE Id = @Id", connection);
+            SqlCommand command = new SqlCommand("UPDATE [Transaction] SET Value = @Value, Text = @Text, Date = @Date, FK_Category = @FK_Category WHERE Id = @Id", connection);
             command.Parameters.AddWithValue("@Value", json["Value"]);
             command.Parameters.AddWithValue("@Text", json["Text"]);
             command.Parameters.AddWithValue("@Date", json["Date"]);

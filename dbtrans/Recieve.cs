@@ -35,7 +35,7 @@ namespace dbtrans
             var connection = factory.CreateConnection();
             var channel = connection.CreateModel();
             channel.ExchangeDeclare("Rapid", "direct", false, false, null);
-            channel.QueueDeclare("Queue1", false, true, false, null);
+            channel.QueueDeclare("Queue1", false, false, false, null);
             channel.QueueBind("Queue1", "Rapid", "lasgetalltrans");
             channel.QueueBind("Queue1", "Rapid", "lasgettransaction");
             channel.QueueBind("Queue1", "Rapid", "lascreatetransaction");
