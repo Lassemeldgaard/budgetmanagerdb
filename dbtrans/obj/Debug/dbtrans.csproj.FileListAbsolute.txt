@@ -1,0 +1,13 @@
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\obj\Debug\dbtrans.csproj.CoreCompileInputs.cache
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\obj\Debug\dbtrans.csprojResolveAssemblyReference.cache
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\dbtrans.exe.config
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\dbtrans.exe
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\dbtrans.pdb
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.dll
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\Newtonsoft.Json.dll
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\RabbitMQ.Client.dll
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\Microsoft.Diagnostics.Tracing.EventSource.xml
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\Newtonsoft.Json.xml
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\bin\Debug\RabbitMQ.Client.xml
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\obj\Debug\dbtrans.exe
+D:\3. semester projekt git christian\Azure console\dbtrans\dbtrans\obj\Debug\dbtrans.pdb
