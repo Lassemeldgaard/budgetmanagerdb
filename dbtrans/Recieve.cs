@@ -57,17 +57,17 @@ namespace dbtrans
                 }
                 else if (ea.RoutingKey == "lasgettransaction")
                 {
-                    database.GetSingleTransactionById(ea.Body.ToString());
+                    database.GetSingleTransactionById(ea.Body);
                     Console.WriteLine(ea.RoutingKey);
                 }
                 else if (ea.RoutingKey == "lascreatetransaction")
                 {
-                    database.CreateTransaction(ea.Body.ToString());
+                    database.CreateTransaction(ea.Body);
                     Console.WriteLine(ea.RoutingKey);
                 }
                 else if (ea.RoutingKey == "lasupdatetransaction")
                 {
-                    database.UpdateTransaction(ea.Body.ToString());
+                    database.UpdateTransaction(ea.Body);
                     Console.WriteLine(ea.RoutingKey);
                 }
                 else if (ea.RoutingKey == "lasgetallcategories")
@@ -77,16 +77,14 @@ namespace dbtrans
                 }
                 else if (ea.RoutingKey == "lasgetcategory")
                 {
-                    database.GetSingleCategoryById(ea.Body.ToString());
+                    database.GetSingleCategoryById(ea.Body);
                     Console.WriteLine(ea.RoutingKey);
                 }
                 else if (ea.RoutingKey == "lasdeletetransaction")
                 {
-                    database.DeleteTransactionById(ea.Body.ToString());
+                    database.DeleteTransactionById(ea.Body);
                     Console.WriteLine(ea.RoutingKey);
                 }
-
-
             };
 
             channel.BasicConsume(queue: "Queue1", autoAck: true, consumer: consumer);

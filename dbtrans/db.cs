@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace dbtrans
@@ -37,9 +38,10 @@ namespace dbtrans
                 throw ex;
             }
         }
-        public void DeleteTransactionById(string data)
+        public void DeleteTransactionById(byte[] data)
         {
-            JObject json = JObject.Parse(data);
+            string debug = Encoding.UTF8.GetString(data);
+            JObject json = JObject.Parse(debug);
             SqlCommand command = new SqlCommand("DELETE FROM Transaction WHERE Id = @Id", connection);
             command.Parameters.Add(CreateParam("@Id", json["Id"], SqlDbType.Int));
             try
@@ -64,9 +66,10 @@ namespace dbtrans
             }
 
         }
-        public void CreateTransaction(string data)
+        public void CreateTransaction(byte[] data)
         {
-            JObject json = JObject.Parse(data);
+            string debug = Encoding.UTF8.GetString(data);
+            JObject json = JObject.Parse(debug);
 
             SqlCommand command = new SqlCommand("INSERT INTO Transaction(Value, Text, Date, FK_Category) VALUES (@Value, @Text, @Date, @FK_Category)", connection);
             command.Parameters.Add(CreateParam("@Value", json["Value"], SqlDbType.Float));
@@ -96,9 +99,10 @@ namespace dbtrans
 
         }
 
-        public void UpdateTransaction(string data)
+        public void UpdateTransaction(byte[] data)
         {
-            JObject json = JObject.Parse(data);
+            string debug = Encoding.UTF8.GetString(data);
+            JObject json = JObject.Parse(debug);
 
             SqlCommand command = new SqlCommand("UPDATE Transaction SET Value = @Value, Text = @Text, Date = @Date, FK_Category = @FK_Category WHERE Id = @Id", connection);
             command.Parameters.AddWithValue("@Value", json["Value"]);
@@ -128,10 +132,11 @@ namespace dbtrans
             }
         }
 
-        internal void GetSingleCategoryById(string data)
+        internal void GetSingleCategoryById(byte[] data)
         {
             DataTable table = new DataTable();
-            JObject json = JObject.Parse(data);
+            string debug = Encoding.UTF8.GetString(data);
+            JObject json = JObject.Parse(debug);
             SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Category WHERE Id = @Id", connection);
             adapter.SelectCommand.Parameters.Add(CreateParam("@Id", json["Id"], SqlDbType.Int));
             try
@@ -190,12 +195,13 @@ namespace dbtrans
             }
         }
 
-        public void GetSingleTransactionById(string data)
+        public void GetSingleTransactionById(byte[] data)
         {
-            JObject json = JObject.Parse(data);
+            string debug = Encoding.UTF8.GetString(data);
+            JObject json = JObject.Parse(debug);
             DataTable table = new DataTable();
 
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Transaction WHERE Id = @id", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM [Transaction] WHERE Id = @id", connection);
             adapter.SelectCommand.Parameters.Add(CreateParam("@Id", json["Id"], SqlDbType.Int));
 
             try
@@ -252,28 +258,6 @@ namespace dbtrans
                 confirmation.Add("Result", "Get failed");
                 sender.EmitData(confirmation, "lasgetalltransconfirmation");
                 connection.Dispose();
-                throw;
-            }
-        }
-
-        public string GetCategoryByFK(int id)
-        {
-            SqlCommand command = new SqlCommand("SELECT Name FROM Category WHERE Id = @id ", connection);
-            command.Parameters.AddWithValue("@id", id);
-
-            try
-            {
-                OpenCon();
-                string name = command.ExecuteNonQuery().ToString();
-                CloseCon();
-
-                return name;
-
-
-            }
-            catch (Exception)
-            {
-
                 throw;
             }
         }
